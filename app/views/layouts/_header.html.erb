@@ -28,10 +28,38 @@
             <% end %>
           </li>
           <li>
+            <%= link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-light' do %>
+              <div class="nav-btn"><i class="fas fa-sign-out-alt"></i> ログアウト</div>
+            <% end %>
+          </li>
+
+        <% elsif admin_signed_in? %>
+          <li>
+            <%= link_to items_path,class: 'nav-link text-light' do %>
+              <div class="nav-btn"><i class="fas fa-home"></i> 商品一覧</div>
+            <% end %>
+          </li>
+          <li>
+            <%=  link_to items_path ,class: 'nav-link text-light' do %>
+              <div class="nav-btn"><i class="fas fa-users"></i> 会員一覧</div>
+            <% end %>
+          </li>
+          <li>
+            <%=  link_to items_path,class: 'nav-link text-light' do %>
+              <div class="nav-btn"><i class="fas fa-users"></i> 注文履歴一覧</div>
+            <% end %>
+          </li>
+          <li>
+            <%=  link_to items_path,class: 'nav-link text-light' do %>
+              <div class="nav-btn"><i class="fas fa-users"></i> ジャンル一覧</div>
+            <% end %>
+          </li>
+          <li>
             <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-light' do %>
               <div class="nav-btn"><i class="fas fa-sign-out-alt"></i> ログアウト</div>
             <% end %>
           </li>
+
         <% else %>
           <li>
             <%= link_to about_path,class: 'nav-link text-dark' do %>
@@ -40,16 +68,16 @@
           </li>
           <li>
             <%=  link_to items_path ,class: 'nav-link text-light' do %>
-
+            <div class="nav-btn"><i class="fas fa-link"></i> 商品一覧</div>
             <% end %>
           </li>
           <li>
-            <%= link_to new_admin_registration_path,class: 'nav-link text-light' do %>
+            <%= link_to new_customer_registration_path,class: 'nav-link text-light' do %>
               <div class="nav-btn"><i class="fas fa-user-plus"></i> 新規登録</div>
             <% end %>
           </li>
           <li>
-            <%= link_to new_admin_session_path ,class: 'nav-link text-light' do %>
+            <%= link_to new_customer_session_path ,class: 'nav-link text-light' do %>
               <div class="nav-btn"><i class="fas fa-sign-in-alt"></i> ログイン</div>
             <% end %>
           </li>

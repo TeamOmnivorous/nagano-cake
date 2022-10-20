@@ -24,11 +24,27 @@ header{
    background-color: #FAEBD7
  }
 
+.container{
+   margin:0;
+}
+
 footer{
-   height:56px;
+   height:100px;
    background-color: #FFA500
 }
 
-img{
+.logo{
    height:100px;
+}
+
+.nav-btn{
+   width:80px;
+   height:50px;
+   border-style:solid;
+   border-color: #FFA500;
+   border-radius:10%;
+   display: flex;
+   justify-content:center;
+   align-items:center;
+   color:#FFA500;
 }

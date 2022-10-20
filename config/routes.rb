@@ -2,14 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :customers
   devise_for :admins
-# devise_for :customers, :controllers => {
-#     :registrations => 'customers/registrations',
-#     :sessions => 'customers/sessions'
-#   }
-#   devise_scope :customers do
-#     get "sign_in", :to => "customers/sessions#new"
-#     get "/customers/sign_out", :to => "customers/sessions#destroy"
-#   end
+
 
   root to: "homes#top"
   get '/home/about' => "homes#about", as: "about"

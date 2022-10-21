@@ -12,7 +12,7 @@ class DeliveriesController < ApplicationController
     @delis = Delivery.all
     @deli.customer_id = current_customer.id
     if @deli.save
-      redirect_to deliveries_path(@deli), notice: "You have created book successfully."
+      redirect_to deliveries_path, notice: "You have created book successfully."
     else
       @delis = Deliveries.all
       render 'index'
@@ -26,7 +26,7 @@ class DeliveriesController < ApplicationController
   def update
     @deli = Delivery.find(params[:id])
     if @deli.update(delivery_params)
-      redirect_to delivery_path(@deli), notice: "You have updated book successfully."
+      redirect_to deliveries_path, notice: "You have updated book successfully."
     else
       render "edit"
     end

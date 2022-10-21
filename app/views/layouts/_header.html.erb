@@ -15,15 +15,17 @@
         <% if customer_signed_in? %>
           <li>
             <%= link_to items_path,class: 'nav-link text-light' do %>
+            <!--パスをmy_page_customers_pathに後でへんこうする-->
               <div class="nav-btn"><i class="fas fa-home"></i> マイページ</div>
             <% end %>
           </li>
           <li>
             <%=  link_to items_path ,class: 'nav-link text-light' do %>
+             <div class="nav-btn"><i class="fas fa-home"></i> 商品一覧</div>
             <% end %>
           </li>
           <li>
-            <%=  link_to customers_path,class: 'nav-link text-light' do %>
+            <%=  link_to cart_items_path,class: 'nav-link text-light' do %>
               <div class="nav-btn"><i class="fas fa-users"></i> カート</div>
             <% end %>
           </li>

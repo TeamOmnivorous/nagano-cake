@@ -1,19 +1,35 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
-     <div class="col-md-3">
+    <div class="col-md-3">
       <!--%= render 'genre_search',genres:@genres%--><!--@genresが解放され次第コメントアウト解く-->
-     </div>
+    </div>
     <div class="col-md-8.offset-md-1">
-      <h2>Book detail</h2>
-      <table class="item_show_table">
-        <tbody>
-          <tr>
-            <td><%= image_tag @item.user.get_profile_image(100,100) %><br>
-            <%= link_to @book.user.name, user_path(@user.id) %></td>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="show_image">
+            <%= image_tag @item.get_image(100,100) %>
+          </div>
+        </div>
 
-            <td><%= link_to @book.title, book_path(@book.id) %></td>
-            <td><%= @book.body %></td>
-            <% if @book.user == current_user %>
-            <td><%= link_to "Edit", edit_book_path(@book.id), class:"btn btn-sm btn-success" %></td>
-            <td><%= link_to "Destroy", book_path(@book.id),method: :delete, class:"btn btn-sm btn-danger" %></td>
+        <div class="col-md-4">
+          <div class="show-details">
+            <h2><strong><%= @item.name %></strong>
+            <p class="item-introduction"><%= @item.explanation %></p>
+            <h3>¥<%= (@item.tax_out_price*1.1).floor.to_s(:delimited) %>(税込)</h3>
+
+            <!--商品詳細ページでカートに入れるボタンを作りたい場面-->
+            <% if @item.is_saled == TRUE %>　<!--商品販売中の場合-->
+              <%= form_with(model: @cart_item,url: cart_items_path, method: :post,local: true)do |f| %>
+                <%= f.select :amount, placeholder: "個数選択", min: 1, max: 10 %>
+                <%= f.hidden_field :item_id, :value => @item.id %>
+                <!--第一引数にオブジェクト名item_id、第二引数部分にvalueで受け渡す値 @item.idを指定-->
+                <!--cartitem controllerの cart_items.find_by(item_id:に送ることができる-->
+                <%= f.submit "カートに入れる",  class: "btn btn-success" %>
               <% end %>
+           <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

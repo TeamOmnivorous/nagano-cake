@@ -10,5 +10,16 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+    @cart_item =CartItem
   end
+
+ private
+ def item_params
+  params.require(:item).permit(:genre_id,:name,:explanation,:image,:tax_out_price)
+ end
+
+
+
+
 end

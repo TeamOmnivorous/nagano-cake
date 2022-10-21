@@ -1,4 +1,16 @@
 class Admin::ItemsController < ApplicationController
+
+ def new
+  @item = new
+ end
+ 
+ def create
+  @item = Item.find(params[:id])
+  @item.update(item_params)
+ end
+
+
+
   def index
     @items = Item.all
    # @genres = Genres.all
@@ -12,4 +24,12 @@ class Admin::ItemsController < ApplicationController
   def show
 
   end
+
+ private
+ def item_params
+  params.require(:item).permit(:genre_id,:name,:explanation,:image,:tax_out_price)
+ end
+
+
+
 end

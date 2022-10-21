@@ -18,9 +18,9 @@
           <% if item.genre.is_saled == true %><!--defalutはtrueに設定-->
             <div class="products-list-item">
               <%= link_to item_path(item) do %>
-                <%= image_tag item.get_item_image(100,100) %>
+                <%= image_tag item.get_image(100,100) %>
                 <%= item.name %>
-                ¥<%= (item.price*1.1)%>(税込)
+                ¥<%= (@item.tax_out_price*1.1).floor.to_s(:delimited) %>(税込)
               <% end %>
             </div>
           <% end %>

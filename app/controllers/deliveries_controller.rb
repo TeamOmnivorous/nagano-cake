@@ -1,21 +1,23 @@
 class DeliveriesController < ApplicationController
+ before_action :correct_customer, only: [:edit, :update]
 
   def index
 
     @deli = Delivery.new
-    @delis = Delivery.all
-
+    @customer=current_customer
+    @delis=@customer.deliveries
   end
 
   def create
     @deli = Delivery.new(delivery_params)
-    @delis = Delivery.all
     @deli.customer_id = current_customer.id
     if @deli.save
-      redirect_to deliveries_path(@deli), notice: "You have created book successfully."
+      redirect_to deliveries_path, notice: "You have created book successfully."
     else
-      @delis = Deliveries.all
-      render 'index'
+      @customer=current_customer
+      @delis = @customer.deliveries
+      render :index
+
     end
   end
 
@@ -26,7 +28,7 @@ class DeliveriesController < ApplicationController
   def update
     @deli = Delivery.find(params[:id])
     if @deli.update(delivery_params)
-      redirect_to delivery_path(@deli), notice: "You have updated book successfully."
+      redirect_to deliveries_path, notice: "You have updated book successfully."
     else
       render "edit"
     end
@@ -40,8 +42,16 @@ class DeliveriesController < ApplicationController
 
   private
 
+
+
   def delivery_params
     params.require(:delivery).permit(:postal_code, :address, :name)
+  end
+
+  def correct_customer
+    @deli = Delivery.find(params[:id])
+    @customer = @deli.customer_id
+    redirect_to(deliveries_path) unless @customer == current_customer.id
   end
 
 end

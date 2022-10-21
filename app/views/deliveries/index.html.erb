@@ -27,25 +27,25 @@
 
 
   <table class='table table-bordered'>
-  <thead>
-    <tr class="table-secondary">
-      <th>郵便番号</th>
-      <th>住所</th>
-      <th>宛名</th>
-      <th colspan="6"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @delis.each do |delivery| %>
-      <tr>
-        <td><%= delivery.postal_code %></td>
-        <td><%= delivery.address %></td>
-        <td><%= delivery.name %></td>
-        <td><%= link_to '編集する', edit_delivery_path(@delis), class: "btn btn-sm btn-success" %></td>
-        <td><%= link_to '削除する', delivery_path(@delis.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+    <thead>
+      <tr class="table-secondary">
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>宛名</th>
+        <th colspan="6"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @delis.each do |delivery| %>
+        <tr>
+          <td><%= delivery.postal_code %></td>
+          <td><%= delivery.address %></td>
+          <td><%= delivery.name %></td>
+          <td><%= link_to '編集する', edit_delivery_path(@delis), class: "btn btn-sm btn-success" %></td>
+          <td><%= link_to '削除する', delivery_path(@delis.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 </div>

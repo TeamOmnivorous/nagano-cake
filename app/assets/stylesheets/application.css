@@ -48,3 +48,7 @@ footer{
    align-items:center;
    color:#FFA500;
 }
+
+.nav-btn:hover{
+   background-color:#ffffff;
+}

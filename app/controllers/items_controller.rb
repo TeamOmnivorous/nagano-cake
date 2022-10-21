@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @cart_item =CartItem
   end
+  
 
  private
  def item_params

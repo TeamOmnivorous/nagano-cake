@@ -16,71 +16,71 @@
           <li>
             <%= link_to items_path,class: 'nav-link text-light' do %>
             <!--パスをmy_page_customers_pathに後でへんこうする-->
-              <div class="nav-btn"><i class="fas fa-home"></i> マイページ</div>
+              <div class="nav-btn">マイページ</div>
             <% end %>
           </li>
           <li>
             <%=  link_to items_path ,class: 'nav-link text-light' do %>
-             <div class="nav-btn"><i class="fas fa-home"></i> 商品一覧</div>
+             <div class="nav-btn">商品一覧</div>
             <% end %>
           </li>
           <li>
             <%=  link_to cart_items_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fas fa-users"></i> カート</div>
+              <div class="nav-btn">カート</div>
             <% end %>
           </li>
           <li>
             <%= link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fas fa-sign-out-alt"></i> ログアウト</div>
+              <div class="nav-btn">ログアウト</div>
             <% end %>
           </li>
 
         <% elsif admin_signed_in? %>
           <li>
             <%= link_to admin_items_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fas fa-home"></i> 商品一覧</div>
+              <div class="nav-btn">商品一覧</div>
             <% end %>
           </li>
           <li>
             <%=  link_to admin_customers_path ,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fas fa-users"></i> 会員一覧</div>
+              <div class="nav-btn">会員一覧</div>
             <% end %>
           </li>
           <li>
             <%=  link_to admin_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fas fa-users"></i> 注文履歴一覧</div>
+              <div class="nav-btn">注文履歴一覧</div>
             <% end %>
           </li>
           <li>
             <%=  link_to admin_genres_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fas fa-users"></i> ジャンル一覧</div>
+              <div class="nav-btn">ジャンル一覧</div>
             <% end %>
           </li>
           <li>
             <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fas fa-sign-out-alt"></i> ログアウト</div>
+              <div class="nav-btn">ログアウト</div>
             <% end %>
           </li>
 
         <% else %>
           <li>
             <%= link_to about_path,class: 'nav-link text-dark' do %>
-              <div class="nav-btn"><i class="fas fa-link"></i> About</div>
+              <div class="nav-btn">About</div>
             <% end %>
           </li>
           <li>
             <%=  link_to items_path ,class: 'nav-link text-light' do %>
-            <div class="nav-btn"><i class="fas fa-link"></i> 商品一覧</div>
+            <div class="nav-btn">商品一覧</div>
             <% end %>
           </li>
           <li>
             <%= link_to new_customer_registration_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fas fa-user-plus"></i> 新規登録</div>
+              <div class="nav-btn">新規登録</div>
             <% end %>
           </li>
           <li>
             <%= link_to new_customer_session_path ,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fas fa-sign-in-alt"></i> ログイン</div>
+              <div class="nav-btn">ログイン</div>
             <% end %>
           </li>
         <% end %>

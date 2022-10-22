@@ -2,7 +2,12 @@
   <div class="row">
     <div class="col-lg-10 mx-auto my-5">
       <h4 class="headline">ログイン</h4>
-      <%= render "public/shared/error_messages", resource: resource %>
+      <p class="notice">
+        <%= notice %>
+      </p>
+      <p class="alert">
+        <%= alert %>
+      </p>
 
       <div class="row ml-3">
         <div class="col-lg-10 m-3">
@@ -12,7 +17,7 @@
 
       <div class="row">
         <div class="col-lg-10 mx-auto">
-          <%= form_with model: @customer, url: customer_session_path(resource_name) do |f| %>
+          <%= form_with model: @customer, url: customer_session_path do |f| %>
             <div class="row mb-2">
               <div class="col-lg-3">
                 <%= f.label "メールアドレス" %>

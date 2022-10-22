@@ -1,12 +1,13 @@
 <div class="container">
   <div class="row">
     <h2>商品一覧</h2>
-    <div class="col-md-8.offset-md-1">
-
-    <div>
-      <%= link_to new_admin_item_path do %>
-      <i class="fa-thin fa-circle-plus">tasu </i>
-      <% end %>
+    <div class="col-md-9"></div>
+      <div class="col-xs-1"></div>
+        <div class="text-right">      
+          <%= link_to new_admin_item_path do %>
+         　<button type="button" class="btn-outline-dark btn-circle btn-lg">＋</button>
+          <% end %>
+        </div>
     </div>
 
     <table class="table product-table">

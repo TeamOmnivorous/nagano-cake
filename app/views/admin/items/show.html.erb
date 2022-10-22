@@ -1,15 +1,13 @@
 <div class="container">
   <div class="row">
-    <h2 class ="bg-secondary">商品詳細</h2>
-
-    <div class="col-xs-4">
+    <div class="col-md-4">
+      <h2>商品詳細</h2>
       <%= image_tag @item.get_image %>
     </div>
 
-    <div class="col-xs-6">
-
+    <div class="col-md-8">
       <div>
-        <p class="col-xs-4">商品名</p><span><%= @item.name %></span>
+        <p class="col-xs-4 offset-xs-1">商品名</p><span><%= @item.name %></span>
       </div>
 
       <div>
@@ -35,7 +33,7 @@
       </div>
 
       <div>
-        <%= link_to "編集する",edit_admin_item_path(@item), class:"btn btn-primary" %>
+        <%= link_to "編集する",edit_admin_item_path(@item), class:"btn btn-success" %>
       </div>
     </div>
   </div>

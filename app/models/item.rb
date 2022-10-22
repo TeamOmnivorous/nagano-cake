@@ -13,7 +13,7 @@ class Item < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpg')
     end
-    image.variant(resize_to_limit: [100, 100]).processed
+    image.variant(resize_to_limit: [300, 300]).processed#variant使用時にはgemファイル26行目をbundle installする
   end
   
 end

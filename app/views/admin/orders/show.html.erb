@@ -1,0 +1,127 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-10 mx-auto my-5">
+      <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-2"><h4 class="headline">注文履歴詳細</h4></div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-lg-10 mx-auto">
+          <div class="row mb-2">
+            <div class="col-lg-4">
+              <h3>購入者</h3>
+            </div>
+            <div class="col-lg-7">
+              <h3><%= "軽騎大好" %></h3>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-lg-4">
+              <h3><%= "注文日" %></h3>
+            </div>
+            <div class="col-lg-7">
+              <h3><%= "2022/10/22" %></h3>
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-lg-4">
+              <h3><%= "配送先" %></h3>
+            </div>
+            <div class="col-lg-7">
+              <h3><%= "〒100-0014 東京都千代田区永田町1-7-1" %></h3>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-lg-4">
+              <h3><%= "支払い方法" %></h3>
+            </div>
+            <div class="col-lg-7">
+              <h3><%= "銀行振込" %></h3>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-lg-4">
+              <h3><%= "注文ステータス" %></h3>
+            </div>
+            <div class="col-lg-4">
+              <h3><%= "入金待ち" %></h3>
+              <!--  https://nllllll.com/ruby-on-rails/enum-status/ 参照   -->
+            </div>
+            <button type="submit" class="btn btn-success">更新</button>
+
+          </div>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="col-lg-10 mx-auto">
+          <div class="row　align-items-end">
+            <div class="col-lg-8">
+              <table class='table table-bordered'>
+                <thead>
+                  <tr class="table-secondary">
+                    <th>商品名</th>
+                    <th>単価（税込）</th>
+                    <th>数量</th>
+                    <th>小計</th>
+                    <th>制作ステータス</th>
+                    <th colspan="2"></th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @delis.each do |delivery| %>
+                    <tr>
+                      <td><%= delivery.postal_code %></td>
+                      <td><%= delivery.address %></td>
+                      <td><%= delivery.name %></td>
+                      <td><%= link_to '編集する', edit_delivery_path(delivery.id), class: "btn btn-sm btn-success" %></td>
+                      <td><%= link_to '削除する', delivery_path(delivery.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-lg-4">
+              <div class="row mb-4 mx-auto">
+                <div class="col-lg-6">
+                  <h3><%= "商品合計" %></h3>
+                </div>
+                <div class="col-lg-5">
+                  <h3><%= "10000円" %></h3>
+                </div>
+              </div>
+              <div class="row mb-4 mx-auto">
+                <div class="col-lg-6">
+                  <h3><%= "送料" %></h3>
+                </div>
+                <div class="col-lg-5">
+                  <h3><%= "800円" %></h3>
+                </div>
+              </div>
+              <div class="row mb-4 mx-auto">
+                <div class="col-lg-6">
+                  <h3><%= "請求金額合計" %></h3>
+                </div>
+                <div class="col-lg-5">
+                  <h3><%= "10800円" %></h3>
+                </div>
+              </div>
+                
+      
+
+            </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+        
+        
+        
+    </div>
+  </div>
+</div>

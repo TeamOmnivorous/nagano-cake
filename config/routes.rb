@@ -20,10 +20,9 @@ Rails.application.routes.draw do
 
   resources :customers
 
-  resources :orders do
-    post '/confirm' => "orders#confirm"
-    get '/complete' => "orders#complete"
-  end
+  post '/orders/confirm' => 'orders#confirm', as: "confirm"
+  get '/orders/complete' => 'orders#complete', as: "complete"
+  resources :orders
 
   resources :deliveries
   resources :items

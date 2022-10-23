@@ -21,7 +21,7 @@
               <h3><%= "注文日" %></h3>
             </div>
             <div class="col-lg-7">
-              <h3><%= @order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></h3>
+              <h3><%= @order.created_at.strftime('%Y/%m/%d') %></h3>
             </div>
           </div>
 
@@ -48,9 +48,9 @@
               <h3><%= "注文ステータス" %></h3>
             </div>
             <div class="col-lg-4">
-              <%= form_with model:@order, url: admin_orders_path(@order.id), local:true do |f| %>
+              <%= form_with model:[:admin,@order],method: :patch, local:true do |f| %>
               <h3>
-                <%= f.select :order_status, Order.order_statuses, {prompt: false}, class:"form-control form-control-sm col-6"  %>
+                <%= f.select :order_status, Order.order_statuses.keys, class: "order_status" %>
               </h3>
               </div>
               <button type="submit" class="btn btn-success">更新</button>
@@ -77,16 +77,16 @@
                 <tbody>
                   <% @order_items.each do |order_items| %>
                     <tr>
-                      <td><%= order_items.price%></td>
+                      <td><%= order_items.item.name%></td>
                       <td><%= order_items.price%></td>
                       <td><%= order_items.amount%></td>
                       <td><%= order_items.price * order_items.amount%></td>
-                      <td>
-                        <%= form_with model:@order_items, url: admin_orders_path(@order), local:true do |f| %>
-                          <%= f.select :making_status, OrderItem.making_statuses, {prompt: false}, class:"form-control form-control-sm col-6"  %>
-                        <% end %>
-                      </td>
-                      <td><button type="submit" class="btn btn-success">更新</button></td>
+                      <%= form_with model: [:admin,@order] ,method: :patch,local:true do |f| %>
+                        <td>
+                          <%= f.select :making_status, OrderItem.making_statuses.keys, class: "making_status" %>
+                        </td>
+                        <td><button type="submit" class="btn btn-success">新規登録</button></td>
+                      <% end %>
                     </tr>
                   <% end %>
                 </tbody>
@@ -117,18 +117,10 @@
                   <h3><%= "10800円" %></h3>
                 </div>
               </div>
-
-
-
-            </div>
-
             </div>
           </div>
         </div>
       </div>
-
-
-
     </div>
   </div>
 </div>

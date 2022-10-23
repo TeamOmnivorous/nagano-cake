@@ -14,20 +14,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>2022/10/21 12:30:00</td>
-            <td>軽騎大好</td>
-            <td>１００</td>
-            <td>入金待ち</td>
-          </tr>
           <% @orders.each do |order| %>
-          <tr>
-            <td><%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
-            <td><%= order.customer.last_name %> <%= order.customer.first_name %></td>
-            <td><%= @orders.count %></td>
-            <td><%= order.order_status %></td>
-          </tr>
-        <% end %>
+            <tr>
+              <td><%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+              <td><%= order.customer.last_name %> <%= order.customer.first_name %></td>
+              <td><%= order.order_items.amount%></td>
+              <td><%= order.order_status %></td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>

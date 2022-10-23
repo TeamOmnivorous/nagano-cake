@@ -11,7 +11,11 @@ class ItemsController < ApplicationController
 
   def show
    @item = Item.find(params[:id])
+   @genres = Genre.all
+   if params[:genre_id].present?
+     @genre = Genre.find(params[:genre_id])
    @cart_item =CartItem
+   end
   end
 
 

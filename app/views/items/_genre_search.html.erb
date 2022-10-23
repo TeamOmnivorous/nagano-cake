@@ -1,18 +1,19 @@
-<table class="genres_search">
+<table class="genres_search table table-sm">
   <thead>
     <tr>
       <th><h2>ジャンル検索</h2></th>
-  </tr>
-</thead>
-<tbody>
-    <% genres.each do |genre| %>
-    <tr>
-      <% if genre.is_saled == true %>
-      <td>
-        <%= link_to genre.name, items_path(genre_id: genre.id), class: "text-dark" %>
-      </td>                    <%# items_pathに引数としてgenre_idを渡す %>
-      <% end %>
     </tr>
-    <% end %>
-</tbody>
+  </thead>
+  <tbody>
+      <% genres.each do |genre| %>
+        <tr>
+          <td>
+            <%= link_to items_path(genre_id: genre.id), class: "text-dark" do %>
+              <%= genre.name %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
 

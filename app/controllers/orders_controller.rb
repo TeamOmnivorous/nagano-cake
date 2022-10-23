@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    cart_items = current_customer.cart_items.all
+    cart_items = current_customer.cart_items
     @order = Order.new(order_params)
     if @order.save
       cart_items.each do |cart_item|
@@ -24,6 +24,18 @@ class OrdersController < ApplicationController
   end
 
   def confirm
+    @order = Order.new(order_params)
+    if params[:order][:address] == "1"
+      @order.name = current_customer.name
+      @order.address = current_customer.address
+    elsif params[:order][:address] == "2"
+      if Delivery.exists?(name: params[:order][:registered])
+        @order.name = Delivery.find(params[:order][:registered]).name
+        @order.address = Delivery.find(params[:order][:registered]).address
+      end
+    elsif params[:order][:address] == "3"
+      new_delivery = current_customer.delivery.new(delivery_params)
+    end
   end
 
   def complete

@@ -3,7 +3,7 @@ class Order < ApplicationRecord
   belongs_to :customer
   has_many :order_items
 
-  enum pay_type: {
+  enum pay_types: {
     クレジットカード: 0,
     銀行振込: 1,
   }

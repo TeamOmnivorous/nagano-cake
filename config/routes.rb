@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   }
 
   root to: "homes#top"
-  get '/home/about' => "homes#about", as: "about"
+  get '/about' => "homes#about", as: "about"
 
   resources :cart_items, only:[:index, :create, :update, :destroy] do
       collection do
@@ -19,7 +19,12 @@ Rails.application.routes.draw do
     end
 
   resources :customers
-  resources :orders
+
+  resources :orders do
+    post '/confirm' => "orders#confirm"
+    get '/complete' => "orders#complete"
+  end
+
   resources :deliveries
   resources :items
 

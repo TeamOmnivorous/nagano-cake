@@ -18,9 +18,20 @@
     <tbody>
       <% @cart_items.each do |cart_item| %>
         <tr>
-          <td><%= form_with model:cart_item,url:cart_item_path(cart_item), method: :patch do |f| %></td>
-          <td><%= cart_item.name %></td>
+          <td><%= cart_item.item.name %></td>
           <td><%= cart_item.item.with_tax_price %></td>
-        </tr>
+           <td><%= form_with model:cart_item,url:cart_item_path(cart_item), method: :patch do |f| %>
+           <%= f.select :amount, *[1..10] %>
+           <%= f.submit "変更" %>
+           <!--変更した際にフォームヘルパーformwith,urlで戻ってくるため-->
+        <% end %>
+      </td>
+      <td><%= cart_item.subtotal %></td>
+      <!--小計-->
+      <td>削除する</td>
+      
+      </tr>
+        <% @total_money +=  cart_item.subtotal %>
       <% end %>
+      </div>
 

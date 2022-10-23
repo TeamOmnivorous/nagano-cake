@@ -15,15 +15,15 @@
 
       <div class="item-list">
         <% @items.each do |item| %>
-          <% if item.genre.is_saled == true %><!--defalutはtrueに設定-->
-            <div class="products-list-item">
+          <%# if item.is_saled == true %><!--defalutはtrueに設定-->
+            <div class="item_list">
               <%= link_to item_path(item) do %>
-                <%= image_tag item.get_image(100,100) %>
+                <%= image_tag item.get_image %>
                 <%= item.name %>
-                ¥<%= (@item.tax_out_price*1.1).floor.to_s(:delimited) %>(税込)
+                ¥<%= (item.tax_out_price*1.1).floor.to_s(:delimited) %>(税込)
               <% end %>
             </div>
-          <% end %>
+          <%# end %>
         <% end %>
       </div>
 

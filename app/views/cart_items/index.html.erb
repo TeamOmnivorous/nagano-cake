@@ -2,7 +2,7 @@
   <div class="row">
      <div class="col-md-3">
         <h3>ショッピングカート</h3>
-        <div>カートを空にする</div>
+        <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete,class: "btn btn-danger btn-sm" %>
      </div>
   </div>
        <table class='table table-bordered'>
@@ -19,19 +19,31 @@
       <% @cart_items.each do |cart_item| %>
         <tr>
           <td><%= cart_item.item.name %></td>
-          <td><%= cart_item.item.with_tax_price %></td>
+          <td><%= cart_item.item.tax_out_price %></td>
            <td><%= form_with model:cart_item,url:cart_item_path(cart_item), method: :patch do |f| %>
            <%= f.select :amount, *[1..10] %>
-           <%= f.submit "変更" %>
+           <%= f.submit "変更",class: "btn btn-success" %>
            <!--変更した際にフォームヘルパーformwith,urlで戻ってくるため-->
         <% end %>
       </td>
       <td><%= cart_item.subtotal %></td>
       <!--小計-->
-      <td>削除する</td>
-      
+      <td> <%= link_to "削除する", cart_item_path(cart_item), method: :delete,class: "btn btn-danger" %></td>
       </tr>
-        <% @total_money +=  cart_item.subtotal %>
+       
+        <!--アイテムごとに合計金額totalに反映 計算しておく-->
       <% end %>
-      </div>
+    </tbody>
+    </table>
+  </div>
+  <div class="low">
+     <%= link_to "買い物を続ける", root_path,class: "btn btn-danger" %>
+  </div>
+  <table>
+    <tr>
+      <td>合計金額</td>
+      <!--<td>合計金額</td>-->
+    </tr>
+  </table>
+
 

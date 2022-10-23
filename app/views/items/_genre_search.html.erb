@@ -7,7 +7,7 @@
 <tbody>
     <% genres.each do |genre| %>
     <tr>
-      <% if genres.is_saled == true %>
+      <% if genre.is_saled == true %>
       <td>
         <%= link_to genre.name, items_path(genre_id: genre.id), class: "text-dark" %>
       </td>                    <%# items_pathに引数としてgenre_idを渡す %>

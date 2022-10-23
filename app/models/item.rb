@@ -15,5 +15,5 @@ class Item < ApplicationRecord
     end
     image.variant(resize_to_limit: [300, 300]).processed#variant使用時にはgemファイル26行目をbundle installする
   end
-  
+
 end

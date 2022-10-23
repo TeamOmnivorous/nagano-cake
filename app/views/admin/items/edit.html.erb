@@ -1,38 +1,45 @@
 <div class="container">
   <div class="row">
-    <h2>商品編集</h2>
-    <%= form_with model:@item, url: admin_item_path, method: :patch do |f| %>
-      <div class="form-group">
-        <%= f.label :image, "商品画像" %>
-        <%= f.file_field :image, accept: "image/*", class: "form-control" %>
-      </div>
+      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+        <h2>商品編集</h2>
+        <%= form_with model: @item, url: admin_item_path(@item.id), method: :patch do |f| %>
 
-      <div class="form-group">
-        <%= f.label :name, "商品名" %>
-        <%= f.text_field :name, class: "form-control" %>
-      </div>
+          <div class="edit_form">
+            <div>
+              <%= f.label :image, "商品画像" %>
+              <%= f.file_field :image, accept: "image/*", class: "form-control" %>
+            </div class="form-group">
 
-      <div class="form-group">
-        <%= f.label :explanation, "商品説明" %>
-        <%= f.text_area :explanation, class: "form-control" %>
-      </div>
+            <div class="form-group">
+              <%= f.label :name, "商品名" %>
+              <%= f.text_field :name, class: "form-control" %>
+            </div>
 
-      <div class="form-group">
-        <%= f.label :genres_id,"ジャンル" %>
-        <%= f.select :is_saled, {'ケーキ': 1, 'プリン': 2, '焼き菓子':3, 'キャンディー':4},{ class: 'form-control' , required: true } %>
-      </div>
+            <div class="form-group">
+              <%= f.label :explanation, "商品説明" %>
+              <%= f.text_area :explanation, class: "form-control" %>
+            </div>
 
-      <div class="form-group">
-        <%= f.label :tax_out_price, "税抜き価格" %>
-        <%= f.text_field :tax_out_price %>円
-      </div>
+            <div class="form-group">
+              <%= f.label :genres_id,"ジャンル" %>
+              <%= f.select :is_saled, {'ケーキ': 1, 'プリン': 2, '焼き菓子':3, 'キャンディー':4},{ class: 'form-control' , required: true } %>
+            </div>
 
-      <div class="form-group">
-        <%= f.label :is_saled, "販売ステータス" %>
-        <%= f.select :is_saled, {'販売中': 1, '販売停止中': 2}, { class: 'form-control' , required: true } %>
-    　　　　　　　　</div>
+            <div class="form-group">
+              <%= f.label :tax_out_price, "税抜き価格" %>
+              <%= f.text_field :tax_out_price %>円
+            </div>
 
-      <div class="form-group">
-        <%= f.submit "新規登録",class: "btn btn-secondary"%>
+            <div class="form-group">
+              <%= f.label :is_saled, "販売ステータス" %>
+              <%= f.select :is_saled, {'販売中': 1, '販売停止中': 2}, { class: 'form-control' , required: true } %>
+        　　　</div>
+
+            <div class="form-group">
+              <%= f.submit "変更を保存",class: "btn btn-success"%>
+            </div>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
+  </div>

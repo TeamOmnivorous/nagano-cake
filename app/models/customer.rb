@@ -6,6 +6,7 @@ class Customer < ApplicationRecord
 
   has_many :deliveries, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :cart_items, dependent: :destroy
 
   # is_deletedがfalseならtrueを返すようにしている
   def active_for_authentication?

@@ -48,7 +48,7 @@
               <h3><%= "注文ステータス" %></h3>
             </div>
             <div class="col-lg-4">
-              <%= form_with model:[:admin,@order],method: :patch, local:true do |f| %>
+              <%= form_with model:[:admin,@order], method: :patch, local:true do |f| %>
               <h3>
                 <%= f.select :order_status, Order.order_statuses.keys, class: "order_status" %>
               </h3>
@@ -80,7 +80,9 @@
                       <td><%= order_items.item.name%></td>
                       <td><%= order_items.price%></td>
                       <td><%= order_items.amount%></td>
-                      <td><%= order_items.price * order_items.amount%></td>
+                      <td><%= order_items.subtotal%></td>
+                      <% @total = @total+ order_items.subtotal %>
+
                       <%= form_with model: [:admin,@order] ,method: :patch,local:true do |f| %>
                         <td>
                           <%= f.select :making_status, OrderItem.making_statuses.keys, class: "making_status" %>
@@ -98,7 +100,7 @@
                   <h3><%= "商品合計" %></h3>
                 </div>
                 <div class="col-lg-5">
-                  <h3><%= "10000円" %></h3>
+                  <h3><%= @total %>円</h3>
                 </div>
               </div>
               <div class="row mb-4 mx-auto">
@@ -106,7 +108,7 @@
                   <h3><%= "送料" %></h3>
                 </div>
                 <div class="col-lg-5">
-                  <h3><%= "800円" %></h3>
+                  <h3><%= @order.postage %>円</h3>
                 </div>
               </div>
               <div class="row mb-4 mx-auto">
@@ -114,7 +116,7 @@
                   <h3><%= "請求金額合計" %></h3>
                 </div>
                 <div class="col-lg-5">
-                  <h3><%= "10800円" %></h3>
+                  <h3><%= @total+@order.postage %>円</h3>
                 </div>
               </div>
             </div>

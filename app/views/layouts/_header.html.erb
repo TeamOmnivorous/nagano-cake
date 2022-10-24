@@ -14,7 +14,7 @@
         <ul class="navbar-nav ml-auto">
         <% if customer_signed_in? %>
           <li>
-            <%= link_to items_path,class: 'nav-link text-light' do %>
+            <%= link_to my_page_path,class: 'nav-link text-light' do %>
             <!--パスをmy_page_customers_pathに後でへんこうする-->
               <div class="nav-btn">マイページ</div>
             <% end %>

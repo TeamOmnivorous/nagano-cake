@@ -4,10 +4,4 @@
 # Examples:
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
-CartItem.create!(
-    customer_id: '1',
-    item_id: '1',
-    amount: '1',
-)

@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  # before_action :permit_params, except: :new
+  before_action :authenticate_customer!
 
   def new
     @order = Order.new
@@ -7,19 +7,20 @@ class OrdersController < ApplicationController
 
   def create
     cart_items = current_customer.cart_items
-    @order = Order.new(order_params)
+    @order = current_customer.orders.new(order_params)
     if @order.save
       cart_items.each do |cart_item|
         order_item = OrderItem.new
         order_item.item_id = cart_item.item_id
         order_item.order_id = @order.id
-        order_item.amout = cart_item.amout
+        order_item.amount = cart_item.amount
         order_item.price = cart_item.item.price
         order_item.save
       end
       redirect_to :confirm
       cart_items.destroy_all
     else
+      @order = Order.new(order_params)
       render :new
     end
   end
@@ -30,15 +31,18 @@ class OrdersController < ApplicationController
       @order.name = current_customer.last_name + current_customer.first_name
       @order.address = current_customer.address
       @order.postal_code = current_customer.postal_code
+
     elsif params[:order][:select_address] == "2"
       if Delivery.exists?(name: params[:order][:registered])
         @order.name = Delivery.find(params[:order][:registered]).name
         @order.address = Delivery.find(params[:order][:registered]).address
         @order.postal_code = Delivery.find(params[:order][:registered]).postal_code
       end
+
     elsif params[:order][:select_address] == "3"
-      new_delivery = current_customer.delivery.new(delivery_params)
-      if new_delivery.save # 確定前(確定画面)での保存になってしまっているため修正必要
+      @new_delivery = Delivery.new(delivery_params)
+      @new_delivery.customer_id = current_customer.id
+      if @new_delivery.save # 確定前(確定画面)での保存になってしまっているため修正必要
       else
         render :new
       end

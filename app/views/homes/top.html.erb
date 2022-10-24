@@ -22,26 +22,15 @@
     <div class="col-lg-10 mx-auto">
       <h3>新着商品</h3>
       <div class="row my-3">
+        <% @items.each do |item| %>
         <div class="col">
-          <p><%= image_tag "cake.jpg", size: "200x150" %></p>
-          <p>商品名: ケーキ</p>
-          <p>値段</p>
+          <%= link_to item_path(item) do %>
+            <p><%= image_tag item.get_image, size: "200x150" %></p>
+            <p><%= item.name %></p>
+            <p>¥<%= (item.tax_out_price * 1.1).floor.to_s(:delimited) %>(税込)</p>
+          <% end %>
         </div>
-        <div class="col">
-          <p><%= image_tag "cookie1.jpg", size: "200x150" %></p>
-          <p>商品名: クッキー</p>
-          <p>値段</p>
-        </div>
-        <div class="col">
-          <p><%= image_tag "pudding.jpg", size: "200x150" %></p>
-          <p>商品名: プリン</p>
-          <p>値段</p>
-        </div>
-        <div class="col">
-          <p><%= image_tag "candy.jpg", size: "200x150" %></p>
-          <p>商品名: りんご飴</p>
-          <p>値段</p>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

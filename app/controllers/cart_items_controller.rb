@@ -1,35 +1,54 @@
 class CartItemsController < ApplicationController
  def index
-  @cart_items = current_customer.cart_item
+ @cart_items = CartItem.all
+ @cart_item = CartItem.new
+ @total_payment = 0
+ # 合計金額を出す際の定義
  end
 
  def create
-  @cart_item = current_customer.cart_items.new(cart_item_params)
+  # カートに入れる　同一商品は個数のみ更新する
+  @cart_item = CartItem.new(cart_item_params)
+  @cart_item.customer_id = current_customer.id
+  # ストロングパラメーターで、個数、item_id、customer_idを受け取っています。
   # もし元々カート内に「同じ商品」がある場合、「数量を追加」更新・保存する
-  if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
-   # 元々カート内にあるもの「item_id」
-   # 　params[:cart_item][:item_id])
-   cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
-   cart_item.quantity += params[:cart_item][:quantity].to_i
-   # cart_item.quantityに今追加したparams[:cart_item][:quantity]を加える
-   # to_iとして数字として扱う
-   cart_item.save
-   redirect_to cart_items_path
-  else
-  end
+ @item = Item.find_by(params[:cart_item][:item_id])
+  # フォームで送られた商品があるかの検索
+ @cart_items = current_customer.cart_items.all
+  @cart_items.each do |cart_item|
+   # カートの中身を一個ずつ取り出して、
+   if cart_item.item_id==@cart_item.item_id
+    # もし、同じ商品が存在していれば、
+      new_amount = cart_item.amount + @cart_item.amount
+      # 今の個数に足す　それを、amountに代入。
+      cart_item.update_attribute(:amount, new_amount)
+      # cart_itemモデルのamountをnew_amountに更新する
+      @cart_item.delete
+      # 同一商品に関しては、個数だけ更新できたらdelete
+   end
+
+    end
+    @cart_item.save
+     redirect_to cart_items_path,notice:"カートに商品が入りました"
  end
+
+  def update
+   @cart_item = CartItem.find(params[:id])
+   @cart_item.update(cart_item_params)
+  end
+
+
 
  def destroy
    cart_item = CartItem.find(params[:id])
    cart_item.destroy
-   @cart_items = CartItem.all
-   render 'index'
-  end
+   redirect_to cart_items_path
+ end
 
   def destroy_all  #カート内全て削除
     cart_items = CartItem.all
     cart_items.destroy_all
-    render 'index'
+    redirect_to cart_items_path
   end
 
 

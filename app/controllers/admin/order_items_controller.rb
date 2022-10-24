@@ -12,4 +12,5 @@ class Admin::OrderItemsController < ApplicationController
     params.require(:order_items).permit(:item_id,:order_id,:amount,:price,:making_status )
   end
 
+
 end

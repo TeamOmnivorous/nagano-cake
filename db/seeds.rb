@@ -6,8 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-CartItem.create!(
-    customer_id: '1',
+OrderItem.create!(
     item_id: '1',
-    amount: '1',
+    order_id: '1',
+    amount: '10',
+    price: '1000',
 )

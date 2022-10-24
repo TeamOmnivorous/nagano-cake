@@ -1,23 +1,23 @@
 <div class="container">
   <div>
-    <h1 class="headline">配送先登録/一覧</h1>
+    <h3 class="headline">配送先登録/一覧</h3>
   </div>
 
   <div class="col mb-5">
     <%= form_with model: @deli,local:true do |f| %>
     <div class="row mb-2">
       <div class="col-3"><%= f.label :郵便番号（ハイフンなし） %></div>
-      <div class="col-3"><%= f.text_field :postal_code, class: 'form-control deliveries_postal_code' %></div>
+      <div class="col-3"><%= f.text_field :postal_code,placeholder: "0000000", class: 'form-control deliveries_postal_code' %></div>
     </div>
 
     <div class="row mb-2">
       <div class="col-3"><%= f.label :住所 %></div>
-      <div class="col-6"><%= f.text_field :address, class: 'form-control deliveries_address' %></div>
+      <div class="col-6"><%= f.text_field :address,placeholder: "東京都千代田区永田町1丁目7-1", class: 'form-control deliveries_address' %></div>
     </div>
 
     <div class="row mb-2">
       <div class="col-3"><%= f.label :宛名 %></div>
-      <div class="col-3"><%= f.text_field :name, class: 'form-control deliveries_name' %></div>
+      <div class="col-3"><%= f.text_field :name,placeholder: "令和道夫", class: 'form-control deliveries_name' %></div>
       <div class="col-3"></div>
       <button type="submit" class="btn btn-success">新規登録</button>
     </div>

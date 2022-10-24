@@ -10,4 +10,8 @@ class OrderItem < ApplicationRecord
     製作完了: 3
   }
 
+  def subtotal
+    price * amount
+  end
+
 end

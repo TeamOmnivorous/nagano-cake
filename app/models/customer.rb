@@ -5,6 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :deliveries, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   # is_deletedがfalseならtrueを返すようにしている
   def active_for_authentication?

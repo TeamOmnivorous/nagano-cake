@@ -12,7 +12,7 @@
               退会する場合は、「退会する」をクリックしてください。
             </p>
             <div>
-             <%= link_to '退会しない', customer_path(@customer.id), class:  "btn btn-success" %>
+             <%= link_to '退会しない',my_page_path, class:  "btn btn-success" %>
              <%= link_to "退会する", withdraw_path(@customer), method: :patch, class: "glyphicon glyphicon-tint btn btn-danger"%>
             </div>
           </div>

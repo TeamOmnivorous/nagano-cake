@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 OrderItem.create!(
-    item_id: '1',
+    item_id: '2',
     order_id: '1',
-    amount: '10',
-    price: '1000',
+    amount: '3',
+    price: '1500',
 )

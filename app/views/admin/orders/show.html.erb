@@ -47,14 +47,18 @@
             <div class="col-lg-4">
               <h3><%= "注文ステータス" %></h3>
             </div>
-            <div class="col-lg-4">
-              <%= form_with model:[:admin,@order], method: :patch, local:true do |f| %>
-              <h3>
-                <%= f.select :order_status, Order.order_statuses.keys, class: "order_status" %>
-              </h3>
-              </div>
-              <button type="submit" class="btn btn-success">更新</button>
-            <% end %>
+            <div class="col-lg-7">
+              <%= form_with model:[@order], url: admin_order_path(@order),  method: :patch, local:true do |f| %>
+                <div class="row mb-2">
+                  <h3 class="col-6">
+                    <%= f.select :order_status, Order.order_statuses.keys, class: "order_status" %>
+                  </h3>
+                  <div>
+                    <%= f.submit "更新", class: "btn btn-success btn-block" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
@@ -69,7 +73,7 @@
                     <th>単価（税込）</th>
                     <th>数量</th>
                     <th>小計</th>
-                    <th>制作ステータス</th>
+                    <th>製作ステータス</th>
                     <th colspan="2"></th>
 
                   </tr>
@@ -83,11 +87,12 @@
                       <td><%= order_items.subtotal%></td>
                       <% @total = @total+ order_items.subtotal %>
 
-                      <%= form_with model: [:admin,@order] ,method: :patch,local:true do |f| %>
+                      <%= form_with model: [:admin,@order_items], url: admin_order_item_path(@order),method: :patch,local:true do |f| %>
                         <td>
                           <%= f.select :making_status, OrderItem.making_statuses.keys, class: "making_status" %>
+                          <%= debug(@order_items) %>
                         </td>
-                        <td><button type="submit" class="btn btn-success">新規登録</button></td>
+                        <td><%= f.submit "更新", class: "btn btn-success btn-block" %></td>
                       <% end %>
                     </tr>
                   <% end %>

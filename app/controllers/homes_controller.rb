@@ -6,7 +6,7 @@ class HomesController < ApplicationController
 
   def about
   end
-  
+
  # def unsubscribe
     #@customer = Customer.find_by(email: params[:email])
   #end

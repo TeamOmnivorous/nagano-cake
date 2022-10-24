@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   # before_action :permit_params, except: :new
 
   def new
+    @order = Order.new
   end
 
   def create
@@ -25,17 +26,26 @@ class OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    if params[:order][:address] == "1"
-      @order.name = current_customer.name
+    if params[:order][:select_address] == "1"
+      @order.name = current_customer.last_name + current_customer.first_name
       @order.address = current_customer.address
-    elsif params[:order][:address] == "2"
+      @order.postal_code = current_customer.postal_code
+    elsif params[:order][:select_address] == "2"
       if Delivery.exists?(name: params[:order][:registered])
         @order.name = Delivery.find(params[:order][:registered]).name
         @order.address = Delivery.find(params[:order][:registered]).address
+        @order.postal_code = Delivery.find(params[:order][:registered]).postal_code
       end
-    elsif params[:order][:address] == "3"
+    elsif params[:order][:select_address] == "3"
       new_delivery = current_customer.delivery.new(delivery_params)
+      if new_delivery.save # 確定前(確定画面)での保存になってしまっているため修正必要
+      else
+        render :new
+      end
     end
+    ## エラーになるのでコメントアウト
+    # @cart_items = current_customer.cart_items.all
+    # @total = cart_item.inject(0) { |sum, item| sum + item.subtotal }
   end
 
   def complete
@@ -52,6 +62,10 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:customer_id, :pay_type, :total_payment, :order_status, :name, :postal_code, :address, :postage)
+  end
+
+  def delivery_params
+    params.require(:order).permit(:postal_code, :address, :name)
   end
 
 end

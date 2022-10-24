@@ -54,12 +54,12 @@ ActiveRecord::Schema.define(version: 2022_10_23_005315) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.integer "item_id", null: false
+    t.integer "items_id", null: false
     t.integer "amount", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_cart_items_on_customer_id"
-    t.index ["item_id"], name: "index_cart_items_on_item_id"
+    t.index ["items_id"], name: "index_cart_items_on_items_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2022_10_23_005315) do
     t.string "postal_code", null: false
     t.string "address", null: false
     t.string "phone_number", null: false
-    t.boolean "is_deleted", default: true, null: false
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -133,5 +133,5 @@ ActiveRecord::Schema.define(version: 2022_10_23_005315) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cart_items", "customers"
-  add_foreign_key "cart_items", "items"
+  add_foreign_key "cart_items", "items", column: "items_id"
 end

@@ -20,6 +20,9 @@ Rails.application.routes.draw do
 
   get '/customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
   patch '/customers/withdraw' => 'customers#withdraw', as: 'withdraw'
+  get "/customers/my_page" => "customers#show", as: "my_page"
+  get "/customers/infomation/edit" => "customers#edit", as: "infomation/edit"
+  patch "/customers/infomation" => "customers#update", as: "infomation"
   resources :customers
 
 

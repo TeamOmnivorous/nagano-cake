@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
   end
-  
+
   def confirm
     @order = Order.new(order_params)
     if params[:order][:select_address] == "1"

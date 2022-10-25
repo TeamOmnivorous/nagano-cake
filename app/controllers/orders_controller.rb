@@ -43,11 +43,11 @@ class OrdersController < ApplicationController
         order_item.item_id = cart_item.item_id
         order_item.order_id = @order.id
         order_item.amount = cart_item.amount
-        order_item.price = cart_item.item.price
+        order_item.price = cart_item.item.with_tax_price
         order_item.save
       end
       redirect_to :complete
-      cart_items.destroy_all
+      current_customer.cart_items.destroy_all
     else
       @order = Order.new(order_params)
       render :new
@@ -59,8 +59,6 @@ class OrdersController < ApplicationController
 
   def index
     @orders = current_customer.orders
-    @order = Order.find(params[:id])
-    @order_items = @order.order_items
   end
 
   def show

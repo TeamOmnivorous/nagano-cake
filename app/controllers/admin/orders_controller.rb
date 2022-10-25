@@ -6,12 +6,25 @@ class Admin::OrdersController < ApplicationController
     @order_items = @order.order_items
     @total = 0
     @orders = Order.all
+    @confirm = @order_items.where(making_status: 3)
+
   end
 
   def update
     @order = Order.find(params[:id])
-    @order.update(order_params)
-    redirect_to admin_order_path(@order)
+    @order_items = @order.order_items
+
+    if @order.update(order_params)
+      @order_items.each do |order_items|
+        if @order.order_status == '入金済み'
+          order_items.update(making_status: 1)
+        end
+      end
+      redirect_to admin_order_path(@order)
+    else
+      redirect_to request.referer
+    end
+
   end
 
   private

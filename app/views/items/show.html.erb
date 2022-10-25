@@ -5,28 +5,36 @@
     </div>
 
 
-        <div class="col-md-4 offset-xs-1">
+        <div class="col-lg-4 offset-xs-1">
           <div class="show_image">
             <%= image_tag @item.get_image %>
           </div>
         </div>
 
-        <div class="col-md-5">
-          <div class="show-details">
+        <div class="col-lg-5">
             <h2><strong><%= @item.name %></strong></p2>
-            <p class="item-introduction"><%= @item.explanation %></p>
-            <h3>¥<%= (@item.with_tax_price) %>(税込)</h3>
+            
+            <div class="empty"></div>
+            
+            <h3 class="item-introduction"><%= @item.explanation %></h3>
+            
+            <div class="empty"></div>
+            
+            <h3>¥<%= (@item.with_tax_price).to_s(:delimited) %>(税込)</h3>
+            
+            <div class="empty2"></div>
 
             <!--商品詳細ページでカートに入れるボタンを作りたい場面-->
-            <% if @item.is_saled == true %><!--商品販売中の場合-->
-              <%= form_with(model: @cart_item,url: cart_items_path, method: :post,local: true)do |f| %>
-                <%= f.number_field :amount , size: "40x20", placeholder: "個数選択", min: 1, max: 10 %>
-                <%= f.hidden_field :item_id, :value => @item.id %>
-                <!--第一引数にオブジェクト名item_id、第二引数部分にvalueで受け渡す値 @item.idを指定-->
-                <!--cart_item_controllerの cart_items.find_by(item_id:に送ることができる-->
-                <%= f.submit "カートに入れる",  class: "btn btn-success" %>
+              <% if @item.is_saled == true %><!--商品販売中の場合-->
+                <%= form_with(model: @cart_item,url: cart_items_path, method: :post,local: true)do |f| %>
+                  <%= f.number_field :amount , size: "40", placeholder: "個数選択", min: 1, max: 10 %>
+                  <%= f.hidden_field :item_id, :value => @item.id %>
+                  <!--第一引数にオブジェクト名item_id、第二引数部分にvalueで受け渡す値 @item.idを指定-->
+                  <!--cart_item_controllerの cart_items.find_by(item_id:に送ることができる-->
+                  <%= f.submit "カートに入れる",  class: "btn_position btn btn-success" %>
+                <% end %>
               <% end %>
-           <% end %>
+
           </div>
         </div>
 

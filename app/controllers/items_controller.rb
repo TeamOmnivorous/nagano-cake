@@ -1,12 +1,11 @@
 class ItemsController < ApplicationController
   def index
    @item_count = Item.all.count
+   @items=Item.page(params[:page]).per(8).reverse_order
    @genres = Genre.all #@genres = Genre.where(is_active: true)のほうがいいかも？
    if params[:genre_id].present?
      @genre = Genre.find(params[:genre_id])
      @items = @genre.items.page(params[:page]).per(8).reverse_order
-   else
-     @items = Item.page(params[:page]).per(8).reverse_order
     #presentメソッドでparams[:genre_id]に値が含まれているか確認 => trueの場合下記を実行
    end
   end

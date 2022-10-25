@@ -28,7 +28,9 @@ class OrdersController < ApplicationController
     end
 
     @cart_items = current_customer.cart_items
-    @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+    @sum = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+    @order.postage = 800
+    @total_payment = @sum + @order.postage
 
   end
 
@@ -56,9 +58,15 @@ class OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders
+    @order = Order.find(params[:id])
+    @order_items = @order.order_items
   end
 
   def show
+    @order = Order.find(params[:id])
+    @order_items = @order.order_items
+    @sum = @order_items.inject(0) { |sum, item| sum + item.subtotal }
   end
 
 

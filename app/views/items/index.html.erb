@@ -4,9 +4,9 @@
       <%= render 'genre_search',genres:@genres%>
      </div>
 
-    <div class="col-3">
+    <div class="col-9">
 
-      <div>  
+      <div>
         <h1 class="item-title">
           <% if params[:genre_id] %>
             <%= @genre.name %>
@@ -17,19 +17,25 @@
         </h1>
 
         <div class="item-list">
-          <% @items.each do |item| %>
+          <div class ="row">
+          <%  @items.each do |item| %>
             <%# if item.is_saled == true %><!--defalutはtrueに設定-->
+            <div class="col-3 p-2">
               <div class="item_list">
-                <%= link_to item_path(item) do %>
-                  <%= image_tag item.get_image %>
-                  <%= item.name %>
-                  ¥<%= (item.tax_out_price*1.1).floor.to_s(:delimited) %>(税込)
+                <p><%= link_to item_path(item) do %></p>
+                  <p><%= image_tag item.get_image, size:"200x150" %></p>
+                <p><%= item.name %></p>
+                <p>  ¥<%= (item.with_tax_price) %>(税込)</p>
                 <% end %>
+              </div>
               </div>
             <%# end %>
           <% end %>
         </div>
-
+      </div>
+      <div class="row">
+        <div class="col3 mx-auto"><%=paginate  @items %></div>
+      </div>
     </div>
   </div>
 </div>

@@ -51,7 +51,7 @@
               <%= f.radio_button :select_address, 2 %>
               <%= f.label :select_address, "登録済住所から選択", value: 2 %>
               <div class="col-lg-10 ml-3">
-                <%= f.collection_select(:registered, current_customer.deliveries, :id, :address, { include_blank: '-- 選択してください --'}, { class: "form-control" }) %>
+                <%= f.collection_select(:delivery_id, current_customer.deliveries, :id, :delivery_display, { include_blank: '-- 選択してください --'}, { class: "form-control" }) %>
               </div>
             </div>
           </div>

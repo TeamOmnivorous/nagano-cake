@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h2>商品一覧★</h2>
+    <h2>商品一覧</h2>
     <div class="col-md-9"></div>
       <div class="col-xs-1"></div>
         <div class="text-right">
@@ -26,7 +26,7 @@
         <tr>
           <td><%= item.id %></td>
           <td><%= link_to item.name,admin_item_path(item) %></td>
-          <td><%= item.tax_out_price.to_s(:delimited) %></td>
+          <td><%= (item.with_tax_price) %></td>
           <td><%= item.genre.name %></td>
           <td>
             <% if item.is_saled %>

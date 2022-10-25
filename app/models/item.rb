@@ -7,6 +7,9 @@ class Item < ApplicationRecord
   validates :tax_out_price, presence: true
 
 
+ def with_tax_price
+    (tax_out_price * 1.1).floor
+ end
 
   def get_image
     unless image.attached?

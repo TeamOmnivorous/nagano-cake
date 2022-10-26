@@ -21,6 +21,12 @@ class Admin::CustomersController < ApplicationController
     end
   end
 
+  def orders # 顧客ごとの注文履歴一覧
+    @customer = Customer.find(params[:id])
+    @orders = @customer.orders.page(params[:page]).order("created_at DESC")
+    @amount_total = 0
+  end
+
 
 
   private

@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     resources :items
     resources :genres
     resources :customers
+    get '/customers/:id/orders' => 'customers#orders', as: "customer/orders"
     resources :orders
     resources :order_items
   end

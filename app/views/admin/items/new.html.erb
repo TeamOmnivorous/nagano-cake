@@ -1,43 +1,53 @@
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-
-        <h2>商品登録画面</h2>
-          <%= form_with model:@item, url: admin_items_path, local:true do |f| %>
-            <div class="form-group">
-              <%= f.label :image, "商品画像" %>
-              <%= f.file_field :image, accept: "image/*", class: "form-control" %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :name, "商品名" %>
-              <%= f.text_field :name, placeholder:"商品名" ,class: "form-control" %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :explanation, "商品説明" %>
-              <%= f.text_area :explanation, placeholder:"商品説明", class: "form-control" %>
-            </div>
-
-            <div class="form-group">
-             <%= f.label :genre_id,"ジャンル" %>
-             <%= f.collection_select :genre_id, Genre.all, :id, :name, { include_blank: '--選択してください--'} %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :tax_out_price, "税抜き価格" %>
-              <%= f.text_field :tax_out_price, placeholder:"1000"%>円
-            </div>
-
-            <div class="form-group">
-              <%= f.label :is_saled, "販売ステータス" %>
-              <%= f.select :is_saled, {'販売中': true, '販売停止中': false}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
-            <div>
-
-            <div class="form-group">
-              <%= f.submit "新規登録",class: "btn btn-success"%>
-            </div>
-          <% end %>
-        </div>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-3">
+      <h2 class="table-secondary">商品登録画面</h2>
     </div>
+  </div>     
+  <div class="row">  
+    <div class="col"></div>
+    <div class="col">
+      <%= form_with model:@item, url: admin_items_path, local:true do |f| %>
+        
+        <div class="form-group">
+          <%= f.label :image, "商品画像" %>
+          <%= f.file_field :image, accept: "image/*", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :name, "商品名" %>
+          <%= f.text_field :name, placeholder:"商品名" ,class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :explanation, "商品説明" %>
+          <%= f.text_area :explanation, placeholder:"商品説明", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+         <%= f.label :genre_id,"ジャンル" %>
+         <%= f.collection_select :genre_id, Genre.all, :id, :name, { include_blank: '--選択してください--'} %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :tax_out_price, "税抜き価格" %>
+          <%= f.text_field :tax_out_price, placeholder:"1000"%>円
+        </div>
+        
+        <div class="form-group"> 
+         <%= f.label :is_saled, "販売ステータス" %>
+          <%= f.radio_button :is_saled, true %>
+          <%= f.label :is_saled_true %>
+          
+          <%= f.radio_button :is_saled, false %>
+          <%= f.label :is_saled_false %>
+        </div>         
+               
+        <div class="form-group">
+          <%= f.submit "新規登録",class: "btn btn-success"%>
+        </div>
+      <% end %>
+    </div> 
+    <div class="col"></div>
   </div>
+</div>

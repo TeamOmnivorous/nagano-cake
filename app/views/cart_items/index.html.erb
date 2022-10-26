@@ -61,7 +61,7 @@
   <% if @cart_items.present? %>
   <div class="row align-item-end">
     <div class="col">
-      <% link_to "情報入力画面に進む",new_order_path,class:"btn btn-success" %>
+      <%= link_to "情報入力画面に進む",new_order_path,class:"btn btn-success" %>
       </div>
       <% else %>
       <h5 class="text-center">カートに存在しません。</h5>

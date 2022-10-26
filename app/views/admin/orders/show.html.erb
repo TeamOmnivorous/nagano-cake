@@ -87,10 +87,9 @@
                       <td><%= order_items.subtotal%></td>
                       <% @total = @total+ order_items.subtotal %>
 
-                      <%= form_with model: [:admin,@order_items], url: admin_order_item_path(@order),method: :patch,local:true do |f| %>
+                      <%= form_with model: [:admin,order_items], url: admin_order_item_path(order_items),method: :patch,local:true do |f| %>
                         <td>
                           <%= f.select :making_status, OrderItem.making_statuses.keys, class: "making_status" %>
-                          <%= debug(@order_items) %>
                         </td>
                         <td><%= f.submit "更新", class: "btn btn-success btn-block" %></td>
                       <% end %>

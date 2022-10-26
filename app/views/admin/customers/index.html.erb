@@ -1,17 +1,40 @@
-<div class="container px-5 px-sm-0">
+<div class="container">
   <div class="row">
-     <div class="col-md-3">
-      <!--%= render 'genre_search',genres:@genres%-->
-     </div>
-    <div class="col-md-8.offset-md-1">
-      <h1 class="item-title">
-        <!--% if params[:genre_id] %--><!--genresが解放されたらコメントアウトを解く-->
-          <!--%= @genre.name %-->
-        <!--% else %-->
-          商品一覧ver2
-        <!--% end %-->
+    <div class="col-lg-12 my-5">
+      <h4>会員一覧</h4>
 
+      <table class="table">
+        <thead>
+          <tr>
+            <th style="width: 10%">会員ID</th>
+            <th style="width: 20%">氏名</th>
+            <th style="width: 50%">メールアドレス</th>
+            <th style="width: 20%">ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+            <tr>
+              <td><%= customer.id %></td>
+              <td>
+                <%= link_to admin_customer_path(customer) do %>
+                  <div class="text-dark"><%= customer.last_name %><%= customer.first_name %></div>
+                <% end %>
+              </td>
+              <td><%= customer.email %></td>
+              <td>
+                <% if customer.is_deleted == false %>
+                  <div class="text-success">有効</div>
+                <% else %>
+                  <div class="text-muted">退会</div>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
+      <%= paginate @customers %>
     </div>
   </div>
 </div>

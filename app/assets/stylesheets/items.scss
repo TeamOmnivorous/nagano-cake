@@ -28,3 +28,22 @@ input[type="number"] {
   width: 90px;
   height: 35px;
 }
+
+.btn-circle-flat {
+  display: inline-block;
+  text-decoration: none;
+  background: #d3d3d3;
+  color: #FFF;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  transition: .4s;
+  border: 0px solid #333;
+}
+
+.item_name_link {
+ color: #000000;
+}

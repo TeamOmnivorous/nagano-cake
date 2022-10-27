@@ -1,45 +1,81 @@
 <div class="container">
-  <div class="row">
-      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-        <h2>商品編集</h2>
-        <%= form_with model: @item, url: admin_item_path(@item.id), method: :patch do |f| %>
-
-          <div class="edit_form">
-            <div>
-              <%= f.label :image, "商品画像" %>
-              <%= f.file_field :image, accept: "image/*", class: "form-control" %>
-            </div class="form-group">
-
-            <div class="form-group">
-              <%= f.label :name, "商品名" %>
-              <%= f.text_field :name, class: "form-control" %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :explanation, "商品説明" %>
-              <%= f.text_area :explanation, class: "form-control" %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :genres_id,"ジャンル" %>
-              <%= f.select :is_saled, {'ケーキ': 1, 'プリン': 2, '焼き菓子':3, 'キャンディー':4},{ class: 'form-control' , required: true } %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :tax_out_price, "税抜き価格" %>
-              <%= f.text_field :tax_out_price %>円
-            </div>
-
-            <div class="form-group">
-              <%= f.label :is_saled, "販売ステータス" %>
-              <%= f.select :is_saled, {'販売中': 1, '販売停止中': 2}, { class: 'form-control' , required: true } %>
-            </div>
-
-            <div class="form-group">
-              <%= f.submit "変更を保存",class: "btn btn-success"%>
-            </div>
-          </div>
-        <% end %>
-      </div>
+  <div class="row mt-5">
+    <div class="col-2">
+      <h2 class="table-secondary">商品編集</h2>
     </div>
   </div>
+
+  <div class="row mt-2">
+    <div class="col-3"></div>
+    <%= form_with model: @item, url: admin_item_path(@item.id), method: :patch do |f| %>
+    <div class="col9">
+
+      <div class="row">
+        <div class="col-lg-4">
+          <%= f.label :image, "商品画像" %>
+        </div>
+        <div class="col-lg-8">
+          <%= f.file_field :image, accept: "image/*", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-lg-4">
+          <%= f.label :name, "商品名" %>
+        </div>
+        <div class="col-lg-8">
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-lg-4">
+          <%= f.label :explanation, "商品説明" %>
+        </div>
+        <div class="col-lg-8">
+          <%= f.text_area :explanation, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-lg-4">
+          <%= f.label :genres_id,"ジャンル" %>
+        </div>
+        <div class="col-lg-8">
+          <%= f.select :is_saled, {'ケーキ': 1, 'プリン': 2, '焼き菓子':3, 'キャンディー':4},{ class: 'form-control' , required: true } %>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-lg-4">
+          <%= f.label :tax_out_price, "税抜き価格" %>
+        </div>
+        <div class="col-lg-8">
+          <%= f.text_field :tax_out_price %>円
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-lg-4">
+          <%= f.label :is_saled, "販売ステータス" %>
+        </div>
+        <div class="col-lg-8">
+          <%= f.radio_button :is_saled, true %>
+          <%= f.label :"販売中" %>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= f.radio_button :is_saled, false %>
+          <%= f.label :"販売停止中" %>
+        </div>
+      </div>
+
+      <div class="row mt-3 mb-5">
+       <div class="col-6 offset-3">
+          <%= f.submit "変更を保存",class: "btn btn-success"%>
+        </div>
+      </div>
+
+    <% end %>
+    <!--div class="col"></div-->
+    </div>
+  </div>
+</div>

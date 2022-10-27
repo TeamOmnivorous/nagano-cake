@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_customer!
+  before_action :redirect_item, only: [:new, :confirm, :create]
 
   def new
     @order = Order.new
@@ -76,6 +77,10 @@ class OrdersController < ApplicationController
 
   def delivery_params
     params.require(:order).permit(:postal_code, :address, :name)
+  end
+
+  def redirect_item
+    redirect_to items_path unless current_customer.cart_items.present?
   end
 
 end

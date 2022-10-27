@@ -5,33 +5,40 @@
     </div>
 
     <div class="col-md-9">
-      <div class="main-visual">
-        <div class="main-visual-content">
-          <div class="main-visual-text">
-            <h6>ようこそ、ながのCAKEへ！</h6>
-            <h6>このサイトは、ケーキ販売のECサイトになります。</h6>
-            <h6>会員でない方も商品の閲覧はできますが、</h6>
-            <h6>購入には会員登録が必要になります。</h6>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="main-visual">
+            <div class="main-visual-content">
+              <div class="main-visual-text">
+                <h6>ようこそ、ながのCAKEへ！</h6>
+                <h6>このサイトは、ケーキ販売のECサイトになります。</h6>
+                <h6>会員でない方も商品の閲覧はできますが、</h6>
+                <h6>購入には会員登録が必要になります。</h6>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-10 mx-auto">
-      <h3>新着商品</h3>
-      <div class="row my-3">
-        <% @items.each do |item| %>
-        <div class="col">
-          <%= link_to item_path(item) do %>
-            <p><%= image_tag item.get_image, size: "200x150" %></p>
-            <p><%= item.name %></p>
-            <p>¥<%= (item.tax_out_price * 1.1).floor.to_s(:delimited) %>(税込)</p>
-          <% end %>
+
+      <div class="row mt-5">
+        <div class="col-md-12 mx-auto">
+          <h3>新着商品</h3>
+          <div class="row my-3">
+            <% @items.each do |item| %>
+            <div class="col-md-3">
+              <%= link_to item_path(item) do %>
+                <p><%= image_tag item.get_image, width: "100%", height: "100%" %></p>
+                <p><%= item.name %></p>
+                <p>¥<%= (item.tax_out_price * 1.1).floor.to_s(:delimited) %>(税込)</p>
+              <% end %>
+            </div>
+            <% end %>
+          </div>
         </div>
-        <% end %>
       </div>
+
     </div>
   </div>
 
@@ -40,4 +47,5 @@
       <u><%= link_to "全ての商品を見る >", items_path %></u>
     </div>
   </div>
+
 </div>

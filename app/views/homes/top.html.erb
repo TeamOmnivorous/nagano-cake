@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row my-5">
-    <div class="col-lg-3">
+    <div class="col-md-3">
       <%= render 'items/genre_search', genres: @genres %>
     </div>
 
-    <div class="col-lg-8 offset-lg-1">
+    <div class="col-md-9">
       <div class="main-visual">
         <div class="main-visual-content">
           <div class="main-visual-text">
@@ -19,7 +19,7 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-10 mx-auto">
+    <div class="col-md-10 mx-auto">
       <h3>新着商品</h3>
       <div class="row my-3">
         <% @items.each do |item| %>
@@ -35,9 +35,9 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-lg-12 text-right">
-      <p><%= link_to "全ての商品を見る >",items_path %></p>
+  <div class="row mb-5">
+    <div class="col-md-12 text-right">
+      <u><%= link_to "全ての商品を見る >", items_path %></u>
     </div>
   </div>
 </div>

@@ -9,7 +9,7 @@ class Admin::ItemsController < ApplicationController
   #debugger # @に何が入っているか
   @item.save
   #debugger # @に何が入っているか
-  redirect_to admin_items_path
+  redirect_to admin_item_path(@item.id)
  end
 
 

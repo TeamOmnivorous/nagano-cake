@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
       @order.postal_code = @new_delivery.postal_code
       @order.address = @new_delivery.address
       @order.name = @new_delivery.name
-
+      @new_delivery.save
     end
 
     @cart_items = current_customer.cart_items
